@@ -7,7 +7,9 @@ addon = 'unknown'
 for (i = 0; i < nodes.length; i++){
   if (nodes[i].nodeGroup == 'cp') {
     type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
-    addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount'
+    addon = type ? (type == 'java' ? 'maven' : 'other') : 'mount'
+
+    jelastic.marketplace.console.WriteLog("Retrieved type: " + addon);
       
     if (addon == 'mount') return {result:99, error: 'deploy to custom containers is not implemented yet', type: 'warning'}
     if (addon == 'maven') envName += '-git-push-${fn.random(1000)}'
