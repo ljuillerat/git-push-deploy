@@ -5,6 +5,16 @@ nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes
 addon = 'unknown'
 
 for (i = 0; i < nodes.length; i++){
+  // Logging the node group
+  var logResult = jelastic.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup, false);
+      
+  if (logResult.result != 0) {
+    // Log an error message if logging fails
+    jelastic.marketplace.console.WriteLog("Error logging node group: " + logResult.error, true);
+  }
+}
+
+for (i = 0; i < nodes.length; i++){
   logResult = jelastic.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup, true);
   if (nodes[i].nodeGroup == 'cp') {
     type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
