@@ -44,7 +44,7 @@ globals:
   scriptName: git-push-redeploy
 
 onInstall:
-  script: /scripts/check-deployment-type.cs?_r=${fn.random}
+  script: /scripts/check-deployment-type.js?_r=${fn.random}
   next: setup
 
 onBeforeDelete: delete-redeploy-script
