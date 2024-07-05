@@ -5,17 +5,12 @@ nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes
 addon = 'unknown'
 
 for (i = 0; i < nodes.length; i++){
-  // Logging the node group
-  jelastic.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup);
-}
-
-for (i = 0; i < nodes.length; i++){
-  jelastic.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup);
+  api.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup);
   if (nodes[i].nodeGroup == 'cp') {
     type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
     addon = type ? (type == 'java' ? 'maven' : 'other') : 'mount'
 
-    jelastic.marketplace.console.WriteLog("Retrieved type: " + addon);
+    api.marketplace.console.WriteLog("Retrieved type: " + addon);
       
     if (addon == 'mount') return {result:99, error: 'deploy to custom containers is not implemented yet', type: 'warning'}
     if (addon == 'maven') envName += '-git-push-${fn.random(1000)}'
