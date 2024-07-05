@@ -5,6 +5,7 @@ nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes
 addon = 'unknown'
 
 for (i = 0; i < nodes.length; i++){
+  logResult = jelastic.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup, false);
   if (nodes[i].nodeGroup == 'cp') {
     type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
     addon = type ? (type == 'java' ? 'maven' : 'other') : 'mount'
