@@ -2,17 +2,17 @@
 
 var envName = '${env.envName}';
 var session = '${session}';
-var nodes = jelastic.environment.control.GetEnvInfo(envName, session).nodes;
+var nodes = api.env.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
 for (var i = 0; i < nodes.length; i++) {
-    jelastic.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup);
+    api.marketplace.console.WriteLog("Retrieved nodeGroup: " + nodes[i].nodeGroup);
     
     if (nodes[i].nodeGroup == 'cp') {
         var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
         addon = type ? (type == 'java' ? 'maven' : 'other') : 'mount';
 
-        jelastic.marketplace.console.WriteLog("Retrieved type: " + addon);
+        api.marketplace.console.WriteLog("Retrieved type: " + addon);
         
         if (addon == 'mount') {
             return {
