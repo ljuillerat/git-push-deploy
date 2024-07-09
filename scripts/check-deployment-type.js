@@ -46,7 +46,7 @@ if(nodes) {
 
 function log(message) {
     if (jelastic.marketplace && jelastic.marketplace.console && message) {
-        return jelastic.marketplace.console.WriteLog('${env.appid}', session, message);
+        return jelastic.marketplace.console.WriteLog(appid, session, message);
     }
 
     return { result : 0 };
@@ -54,6 +54,6 @@ function log(message) {
 
 return {
     result: 99,
-    error: 'nodeGroup [cp] is not present in the topology ' + envName + ' ' + appId + ' ' + session,
+    error: 'nodeGroup [cp] is not present in the topology ' + envName + ' ' + appid + ' ' + session,
     type: 'warning'
 };
