@@ -2,14 +2,14 @@
 
 var envName = '${env.envName}';
 var session = '${session}';
-jelastic.marketplace.console.WriteLog(null, session, "Strating ...: ");
+jelastic.marketplace.console.WriteLog("10353672de57fc312c9b081aed3073ee", session, "Strating ...: ");
 var nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
-jelastic.marketplace.console.WriteLog(null, session, "Environment: " + envName);
+jelastic.marketplace.console.WriteLog("10353672de57fc312c9b081aed3073ee", session, "Environment: " + envName);
 
 for (var i = 0; i < nodes.length; i++) {
-    jelastic.marketplace.console.WriteLog(null, session, "Nodegroup: " + nodes[i].nodeGroup);
+    jelastic.marketplace.console.WriteLog("10353672de57fc312c9b081aed3073ee", session, "Nodegroup: " + nodes[i].nodeGroup);
     if (nodes[i].nodeGroup == 'cp') {
         var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
         addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount';
