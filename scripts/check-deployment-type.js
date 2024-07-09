@@ -4,14 +4,14 @@ var envName = '${env.envName}';
 var session = '${session}';
 var appId = '${appId}';
 
-jelastic.marketplace.console.WriteLog(appId, session, "Strating ...: ");
+log(appId, session, "Strating ...: ");
 var nodes = jelastic.environment.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
-jelastic.marketplace.console.WriteLog(appId, session, "Environment: " + envName);
+log(appId, session, "Environment: " + envName);
 
 for (var i = 0; i < nodes.length; i++) {
-    jelastic.marketplace.console.WriteLog(appId, session, "Nodegroup: " + nodes[i].nodeGroup);
+    log(appId, session, "Nodegroup: " + nodes[i].nodeGroup);
     if (nodes[i].nodeGroup == 'cp') {
         var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
         addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount';
@@ -41,6 +41,14 @@ for (var i = 0; i < nodes.length; i++) {
 
         return resp;
     }
+}
+
+function log(appId, session, message) {
+    if (jelastic.marketplace && jelastic.marketplace.console && message) {
+        return jelastic.marketplace.console.WriteLog(appId, session, message);
+    }
+
+    return { result : 0 };
 }
 
 return {
