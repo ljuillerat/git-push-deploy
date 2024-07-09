@@ -2,15 +2,15 @@
 
 var envName = '${env.envName}';
 
-log(appId, "Starting ...");
+log("Starting ...");
 var nodes = jelastic.environment.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
-log(appId, "Environment: " + envName);
+log("Environment: " + envName);
 
 if(nodes) {
     for (var i = 0; i < nodes.length; i++) {
-        log(appId, "Nodegroup: " + nodes[i].nodeGroup);
+        log("Nodegroup: " + nodes[i].nodeGroup);
         if (nodes[i].nodeGroup == 'cp') {
             var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
             addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount';
@@ -43,7 +43,7 @@ if(nodes) {
     }
 }
 
-function log(appId, message) {
+function log(message) {
     if (jelastic.marketplace && jelastic.marketplace.console && message) {
         return jelastic.marketplace.console.WriteLog(appId, session, message);
     }
