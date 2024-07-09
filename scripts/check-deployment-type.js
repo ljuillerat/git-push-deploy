@@ -55,6 +55,6 @@ function log(appId, session, message) {
 
 return {
     result: 99,
-    error: 'nodeGroup [cp] is not present in the topology ' + appId,
+    error: 'nodeGroup [cp] is not present in the topology ' + envName + ' ' + appId + ' ' + session,
     type: 'warning'
 };
