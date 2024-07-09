@@ -1,6 +1,9 @@
 //@req(next)
 
 var envName = '${env.envName}';
+jelastic.marketplace.console.WriteLog("Strating ...: ");
+api.marketplace.console.WriteLog("Strating ...: ");
+console.log("Starting ...");
 var nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
