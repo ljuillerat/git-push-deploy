@@ -1,18 +1,17 @@
 //@req(next)
 
 var envName = '${env.envName}';
-var session = '${session}';
-var appId = '${appId}';
+var appId = '${env.appId}';
 
-log(appId, session, "Strating ...: ");
+log(appId, "Starting ...");
 var nodes = jelastic.environment.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
-log(appId, session, "Environment: " + envName);
+log(appId, "Environment: " + envName);
 
 if(nodes) {
     for (var i = 0; i < nodes.length; i++) {
-        log(appId, session, "Nodegroup: " + nodes[i].nodeGroup);
+        log(appId, "Nodegroup: " + nodes[i].nodeGroup);
         if (nodes[i].nodeGroup == 'cp') {
             var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
             addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount';
@@ -45,7 +44,7 @@ if(nodes) {
     }
 }
 
-function log(appId, session, message) {
+function log(appId, message) {
     if (jelastic.marketplace && jelastic.marketplace.console && message) {
         return jelastic.marketplace.console.WriteLog(appId, session, message);
     }
