@@ -4,7 +4,10 @@ var envName = '${env.envName}';
 var nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
+jelastic.marketplace.console.WriteLog("Environment: " + envName);
+
 for (var i = 0; i < nodes.length; i++) {
+    jelastic.marketplace.console.WriteLog("Nodegroup: " + nodes[i].nodeGroup);
     if (nodes[i].nodeGroup == 'cp') {
         var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
         addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount';
