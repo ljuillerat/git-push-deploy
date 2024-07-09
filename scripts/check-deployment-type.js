@@ -1,7 +1,6 @@
 //@req(next)
 
 var envName = '${env.envName}';
-var appid = '${env.appid}';
 
 log("Starting ...");
 var nodes = jelastic.environment.control.GetEnvInfo(envName, session).nodes;
@@ -46,7 +45,7 @@ if(nodes) {
 
 function log(message) {
     if (jelastic.marketplace && jelastic.marketplace.console && message) {
-        return jelastic.marketplace.console.WriteLog(appid, session, message);
+        return jelastic.marketplace.console.WriteLog(session, message);
     }
 
     return { result : 0 };
@@ -54,6 +53,6 @@ function log(message) {
 
 return {
     result: 99,
-    error: 'nodeGroup [cp] is not present in the topology ' + envName + ' ' + appid + ' ' + session,
+    error: 'nodeGroup [cp] is not present in the topology ' + envName + ' ' + session,
     type: 'warning'
 };
