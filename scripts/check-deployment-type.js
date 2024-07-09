@@ -45,7 +45,7 @@ if(nodes) {
 
 function log(message) {
     if (jelastic.marketplace && jelastic.marketplace.console && message) {
-        return jelastic.marketplace.console.WriteLog(session, message);
+        return jelastic.marketplace.console.WriteLog(String(session), String(message));
     }
 
     return { result : 0 };
