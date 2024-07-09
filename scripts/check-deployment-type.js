@@ -1,7 +1,6 @@
 //@req(next)
 
 var envName = '${env.envName}';
-var appId = '${env.appId}';
 
 log(appId, "Starting ...");
 var nodes = jelastic.environment.control.GetEnvInfo(envName, session).nodes;
