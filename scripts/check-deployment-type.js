@@ -1,13 +1,12 @@
 //@req(next)
 
 var envName = '${env.envName}';
-jelastic.marketplace.console.WriteLog("Strating ...: ");
-api.marketplace.console.WriteLog("Strating ...: ");
-console.log("Starting ...");
+var session = '${session}';
+jelastic.marketplace.console.WriteLog(session, "Strating ...: ");
 var nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes;
 var addon = 'unknown';
 
-jelastic.marketplace.console.WriteLog("Environment: " + envName);
+jelastic.marketplace.console.WriteLog(session, "Environment: " + envName);
 
 for (var i = 0; i < nodes.length; i++) {
     jelastic.marketplace.console.WriteLog("Nodegroup: " + nodes[i].nodeGroup);
