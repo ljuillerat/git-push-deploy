@@ -10,7 +10,10 @@ log("Environment: " + envName);
 
 if(nodes) {
     for (var i = 0; i < nodes.length; i++) {
-        log("Nodegroup: " + nodes[i].nodeGroup);
+        log("Node iteration: " + i);
+        log("Node group: " + nodes[i].nodeGroup);
+        log("Node engine type: " + nodes[i].engineType);
+        log("Node active engine: " + nodes[i].activeEngine);
         if (nodes[i].nodeGroup == 'cp') {
             var type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
             addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount';
