@@ -44,9 +44,8 @@ if(nodes) {
 }
 
 function log(message) {
-    if (jelastic.marketplace && jelastic.marketplace.console && message) {
-        return jelastic.marketplace.console.WriteLog(String(appid), String(signature), String(message));
-    }
+    
+    return jelastic.marketplace.console.WriteLog(appid, session, "Sample message");
 
     return { result : 0 };
 }
